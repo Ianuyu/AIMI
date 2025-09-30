@@ -2,7 +2,7 @@
 
 ## Lab 1 : Pneumonia Classification
 > **Task** : Detect Pneumonia from Chest X-Ray Images  
-> **Dataset** : Chest X-Ray Images (Pneumonia)
+> **Dataset** : Chest X-Ray Images (Pneumonia)  
 > **Report** : [Report](https://github.com/Ianuyu/AIMI/blob/main/Lab1/LAB1_314553020_%E8%A8%B1%E8%89%AF%E4%BA%A6.pdf)
 ## Abstract
 本實作以 ResNet-18、ResNet-50 與 DenseNet-121（可選 ImageNet 預訓練）對胸腔 X 光進行二分類（NORMAL / PNEUMONIA）。
