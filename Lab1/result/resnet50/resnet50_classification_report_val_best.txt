@@ -1,0 +1,11 @@
+precision=1.0000, recall=1.0000, f1=1.0000, acc=100.00% (loss=0.0621)
+
+               precision    recall  f1-score   support
+
+   0 - NORMAL       1.00      1.00      1.00         8
+1 - PNEUMONIA       1.00      1.00      1.00         8
+
+     accuracy                           1.00        16
+    macro avg       1.00      1.00      1.00        16
+ weighted avg       1.00      1.00      1.00        16
+
