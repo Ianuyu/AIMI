@@ -26,9 +26,9 @@ python main.py --mode plot --backbone resnet18
 python main.py --mode test --backbone resnet18 --ckpt checkpoints
 ```
 ## Lab 2 : EEGNet & DeepConvNet for BCI Classification
-> **Task** ：Classify EEG signals for motor imagery tasks
-> **Dataset** ：BCI Competition Dataset (EEG signals)
-> **Report** ：[Report](https://github.com/Ianuyu/AIMI/blob/main/Lab2/LAB2_314553020_%E8%A8%B1%E8%89%AF%E4%BA%A6.pdf)  
+> **Task** ：Classify EEG signals for motor imagery tasks  
+> **Dataset** ：BCI Competition Dataset (EEG signals)  
+> **Report** ：[Report](https://github.com/Ianuyu/AIMI/blob/main/Lab2/LAB2_314553020_%E8%A8%B1%E8%89%AF%E4%BA%A6.pdf)    
 ## Abstract
 本實驗利用 **PyTorch** 實作了 **EEGNet** 與 **DeepConvNet** 兩種模型，用於對 **BCI Competition** 腦波資料集進行分類任務。
 同時，本專案比較了不同的 **啟發函數（ELU、ReLU、LeakyReLU）** 對模型效能的影響，並針對 **ELU 的 α（alpha）參數** 進行實驗分析。
@@ -46,6 +46,6 @@ python main.py --mode test --backbone resnet18 --ckpt checkpoints
 
 ## Command
 ```text
-# Training
+# Training and Testing
 python main.py 
 ```
