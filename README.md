@@ -31,6 +31,14 @@ python main.py --mode test --backbone resnet18 --ckpt checkpoints
 > **Report** ：[Report](https://github.com/Ianuyu/AIMI/blob/main/Lab2/LAB2_314553020_%E8%A8%B1%E8%89%AF%E4%BA%A6.pdf)    
 ## Abstract
 本實驗利用 **PyTorch** 實作了 **EEGNet** 與 **DeepConvNet** 兩種模型，用於對 **BCI Competition** 腦波資料集進行分類任務。
+
+| Model               |  Accuracy | Precision |   Recall  | F1-score (Macro) |
+| :------------------ | :-------: | :-------: | :-------: | :--------------: |
+| **ResNet-18**       |   0.818   |   0.827   |   0.871   |       0.846      |
+| **DenseNet-121**    |   0.838   |   0.839   |   0.833   |       0.836      |
+| **EfficientNet-B0** |   0.771   |   0.773   |   0.843   |       0.798      |
+| **ConvNeXt-Tiny**   | **0.839** | **0.837** | **0.841** |     **0.837**    |
+
 同時，本專案比較了不同的 **啟發函數（ELU、ReLU、LeakyReLU）** 對模型效能的影響，並針對 **ELU 的 α（alpha）參數** 進行實驗分析。
 此外，訓練過程中結合了 **Warmup** 與 **Cosine Annealing**，以提升模型的收斂穩定性與最終準確率。
 
@@ -48,4 +56,37 @@ python main.py --mode test --backbone resnet18 --ckpt checkpoints
 ```text
 # Training and Testing
 python main.py 
+```
+## Lab 3 : Multi-class Classification
+> **Task** : classify X-ray images into four categories:  **Normal**, **Bacteria**, **Virus**, and **COVID-19**.  
+> **Dataset** : Multi-class Classification with CXR dataset  
+> **Report** : [Report]()
+## Abstract
+本實作以 ResNet-18、DenseNet-121、EfficientNet-B0 與 ConvNeXt-Tiny 四種深度卷積神經網路（均可選用 ImageNet 預訓練權重）進行 胸腔 X 光影像四分類任務（Normal / Bacteria / Virus / COVID-19）。
+資料前處理包含等比例縮放至 256×256、隨機水平翻轉、亮度/對比度調整與輕度旋轉增強，並以 類別加權損失（Weighted Cross Entropy） 與 不平衡取樣（Imbalanced Sampling） 緩解資料分佈不均問題。
+實驗結果顯示各模型整體表現穩定，其中 ConvNeXt-Tiny 具最佳宏平均 F1-score（約 0.84），能有效捕捉高階語意特徵；ResNet-18 則在訓練效率與準確率間取得良好平衡，為具代表性的基準模型。
+
+## Results 
+| Model               |  Accuracy | Precision |   Recall  | F1-score (Macro) |
+| ------------------ | :-------: | :-------: | :-------: | :--------------: |
+| **ResNet-18**       |   0.818   |   0.827   |   0.871   |       0.846      |
+| **DenseNet-121**    |   0.838   |   0.839   |   0.833   |       0.836      |
+| **EfficientNet-B0** |   0.771   |   0.773   |   0.843   |       0.798      |
+| **ConvNeXt-Tiny**   | **0.839** | **0.837** | **0.841** |     **0.837**    |
+
+## Command
+```text
+# Training and Testing
+resnet18
+python main.py --backbon resnet18 --epochs 50 --es-patience 10 --lr 5e-5 --bs 16 --img-size 256 --sched plateau --monitor val_f1
+--plateau-factor 0.5 --plateau-patience 3 --min-lr 1e-6 --weight-decay 2e-4 --dropout 0.10
+densenet121
+python main.py --backbone densenet121 --epochs 50 --es-patience 10 --lr 5e-5 --bs 16 --img-size 256 --sched plateau --monitor val_f1
+--plateau-factor 0.5 --plateau-patience 3 --min-lr 1e-6 --weight-decay 2e-4 --dropout 0.10
+EfficientNet-B0
+python main.py --backbone efficientnet_b0 --epochs 50 --es-patience 10 --lr 5e-5 --bs 16 --img-size 256 --sched plateau --monitor val_f1
+--plateau-factor 0.5 --plateau-patience 3 --min-lr 1e-6 --weight-decay 2e-4 --dropout 0.10
+ConvNeXt-Tiny
+python main.py --backbone convnext_tiny --epochs 50 --es-patience 10 --lr 5e-5 --bs 16 --img-size 256 --sched plateau --monitor val_f1
+--plateau-factor 0.5 --plateau-patience 3 --min-lr 1e-6 --weight-decay 2e-4 --dropout 0.10
 ```
