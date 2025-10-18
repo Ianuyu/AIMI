@@ -80,12 +80,15 @@ python main.py
 resnet18
 python main.py --backbon resnet18 --epochs 50 --es-patience 10 --lr 5e-5 --bs 16 --img-size 256 --sched plateau --monitor val_f1
 --plateau-factor 0.5 --plateau-patience 3 --min-lr 1e-6 --weight-decay 2e-4 --dropout 0.10
+===================================================================================================================================
 densenet121
 python main.py --backbone densenet121 --epochs 50 --es-patience 10 --lr 5e-5 --bs 16 --img-size 256 --sched plateau --monitor val_f1
 --plateau-factor 0.5 --plateau-patience 3 --min-lr 1e-6 --weight-decay 2e-4 --dropout 0.10
+===================================================================================================================================
 EfficientNet-B0
 python main.py --backbone efficientnet_b0 --epochs 50 --es-patience 10 --lr 5e-5 --bs 16 --img-size 256 --sched plateau --monitor val_f1
 --plateau-factor 0.5 --plateau-patience 3 --min-lr 1e-6 --weight-decay 2e-4 --dropout 0.10
+===================================================================================================================================
 ConvNeXt-Tiny
 python main.py --backbone convnext_tiny --epochs 50 --es-patience 10 --lr 5e-5 --bs 16 --img-size 256 --sched plateau --monitor val_f1
 --plateau-factor 0.5 --plateau-patience 3 --min-lr 1e-6 --weight-decay 2e-4 --dropout 0.10
