@@ -75,8 +75,11 @@ python main.py
 | **ConvNeXt-Tiny**   | **0.839** | **0.837** | **0.841** |     **0.837**    |
 
 ## Command
-```text
 # Training and Testing
+```bash
+=========
+ReduceLROnPlateau
+=========
 resnet18
 python main.py --backbon resnet18 --epochs 50 --es-patience 10 --lr 5e-5 --bs 16 --img-size 256 --sched plateau --monitor val_f1
 --plateau-factor 0.5 --plateau-patience 3 --min-lr 1e-6 --weight-decay 2e-4 --dropout 0.10
@@ -92,4 +95,24 @@ python main.py --backbone efficientnet_b0 --epochs 50 --es-patience 10 --lr 5e-5
 ConvNeXt-Tiny
 python main.py --backbone convnext_tiny --epochs 50 --es-patience 10 --lr 5e-5 --bs 16 --img-size 256 --sched plateau --monitor val_f1
 --plateau-factor 0.5 --plateau-patience 3 --min-lr 1e-6 --weight-decay 2e-4 --dropout 0.10
+```
+```bash
+=========
+CosineAnnealingLR
+=========
+resnet18
+python main.py --backbone resnet18 --img-size 256 --epochs 90 --bs 24 --lr 3e-4 --weight-decay 3e-4 --dropout 0.25
+--sched cosine --warmup-epochs 6 --warmup-start 0.1 --min-lr 1e-6 --es-patience 15
+===================================================================================================================================
+densenet121
+python main.py --backbone densenet121 --img-size 256 --epochs 90 --bs 24 --lr 3e-4 --weight-decay 3e-4 --dropout 0.25
+--sched cosine --warmup-epochs 6 --warmup-start 0.1 --min-lr 1e-6 --es-patience 15
+===================================================================================================================================
+EfficientNet-B0
+python main.py --backbone efficientnet_b0 --img-size 256 --epochs 90 --bs 24 --lr 3e-4 --weight-decay 3e-4 --dropout 0.25
+--sched cosine --warmup-epochs 6 --warmup-start 0.1 --min-lr 1e-6 --es-patience 15
+===================================================================================================================================
+ConvNeXt-Tiny
+python main.py --backbone convnext_tiny --img-size 256 --epochs 90 --bs 24 --lr 3e-4 --weight-decay 3e-4 --dropout 0.25
+--sched cosine --warmup-epochs 6 --warmup-start 0.1 --min-lr 1e-6 --es-patience 15
 ```
