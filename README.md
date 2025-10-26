@@ -67,12 +67,21 @@ python main.py
 實驗結果顯示各模型整體表現穩定，其中 ConvNeXt-Tiny 具最佳宏平均 F1-score（約 0.84），能有效捕捉高階語意特徵；ResNet-18 則在訓練效率與準確率間取得良好平衡，為具代表性的基準模型。
 
 ## Results 
+======> ReduceLROnPlateau
 | Model               |  Accuracy | Precision |   Recall  | F1-score (Macro) |
-| ------------------ | :-------: | :-------: | :-------: | :--------------: |
-| **ResNet-18**       |   0.818   |   0.827   |   0.871   |       0.846      |
+| ------------------  | :-------: | :-------: | :-------: | :--------------: |
+| **ResNet-18**       |   0.818   |   0.827   | **0.871** |     **0.846**    |
 | **DenseNet-121**    |   0.838   |   0.839   |   0.833   |       0.836      |
 | **EfficientNet-B0** |   0.771   |   0.773   |   0.843   |       0.798      |
-| **ConvNeXt-Tiny**   | **0.839** | **0.837** | **0.841** |     **0.837**    |
+| **ConvNeXt-Tiny**   | **0.839** | **0.837** |   0.841   |       0.837      |
+
+======> CosineAnnealingLR
+| Model               |  Accuracy | Precision |   Recall  | F1-score (Macro) |
+| ------------------  | :-------: | :-------: | :-------: | :--------------: |
+| **ResNet-18**       |   0.818   |   0.827   | **0.871** |     **0.846**    |
+| **DenseNet-121**    |   0.838   |   0.839   |   0.833   |       0.836      |
+| **EfficientNet-B0** |   0.771   |   0.773   |   0.843   |       0.798      |
+| **ConvNeXt-Tiny**   | **0.839** | **0.837** |   0.841   |       0.837      |
 
 ## Command
 # Training and Testing
@@ -99,18 +108,18 @@ python main.py --backbone convnext_tiny --epochs 50 --es-patience 10 --lr 5e-5 -
 CosineAnnealingLR
 ------------------
 resnet18
-python main.py --backbone resnet18 --img-size 256 --epochs 90 --bs 24 --lr 3e-4 --weight-decay 3e-4 --dropout 0.25
+python main.py --backbone resnet18 --img-size 256 --epochs 50 --bs 16 --lr 3e-4 --weight-decay 3e-4 --dropout 0.25
 --sched cosine --warmup-epochs 6 --warmup-start 0.1 --min-lr 1e-6 --es-patience 15
 ===================================================================================================================================
 densenet121
-python main.py --backbone densenet121 --img-size 256 --epochs 90 --bs 24 --lr 3e-4 --weight-decay 3e-4 --dropout 0.25
+python main.py --backbone densenet121 --img-size 256 --epochs 50 --bs 16 --lr 3e-4 --weight-decay 3e-4 --dropout 0.25
 --sched cosine --warmup-epochs 6 --warmup-start 0.1 --min-lr 1e-6 --es-patience 15
 ===================================================================================================================================
 EfficientNet-B0
-python main.py --backbone efficientnet_b0 --img-size 256 --epochs 90 --bs 24 --lr 3e-4 --weight-decay 3e-4 --dropout 0.25
+python main.py --backbone efficientnet_b0 --img-size 256 --epochs 50 --bs 16 --lr 3e-4 --weight-decay 3e-4 --dropout 0.25
 --sched cosine --warmup-epochs 6 --warmup-start 0.1 --min-lr 1e-6 --es-patience 15
 ===================================================================================================================================
 ConvNeXt-Tiny
-python main.py --backbone convnext_tiny --img-size 256 --epochs 90 --bs 24 --lr 3e-4 --weight-decay 3e-4 --dropout 0.25
+python main.py --backbone convnext_tiny --img-size 256 --epochs 50 --bs 16 --lr 3e-4 --weight-decay 3e-4 --dropout 0.25
 --sched cosine --warmup-epochs 6 --warmup-start 0.1 --min-lr 1e-6 --es-patience 15
 ```
